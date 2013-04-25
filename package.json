@@ -1,0 +1,17 @@
+{
+  "name": "mtracker",
+  "version": "0.0.0",
+  "description": "Health Metrics Tracker",
+  "main": "http_server.js",
+  "dependencies": {
+    "mustache": "~0.7.2",
+    "node-static": "~0.6.9",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Gonzalo Maldonado",
+  "license": "BSD"
+}
