@@ -3,12 +3,10 @@ var http = require('http')
 , fs = require('fs')
 , mustache = require('mustache')
 , port = process.env.NODE_ENV == 'prod' ? '/tmp/node.socket' : 8124
-, template = fs.readFileSync('./index.html', 'utf8');
-
-var data = '';
+, root_path = '/home/pi/mtracker';
 
 var render_home = function(req, res){
-    template = fs.readFileSync('./index.html', 'utf8');
+    var template = fs.readFileSync(root_path + '/index.html', 'utf8');
     var view = {
         title: "Raspberry PI"
     };
