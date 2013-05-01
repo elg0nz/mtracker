@@ -3,7 +3,7 @@ var http = require('http')
 , fs = require('fs')
 , mustache = require('mustache')
 , port = process.env.NODE_ENV == 'prod' ? '/tmp/node.socket' : 8124
-, root_path = '/home/pi/mtracker';
+, root_path = process.env.TPL_PATH;
 
 var render_home = function(req, res){
     var template = fs.readFileSync(root_path + '/index.html', 'utf8');
