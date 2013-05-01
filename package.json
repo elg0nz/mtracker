@@ -6,6 +6,7 @@
   "dependencies": {
     "mustache": "~0.7.2",
     "node-static": "~0.6.9",
+    "jasmine-node": "~1.7.0",
   },
   "devDependencies": {},
   "scripts": {
