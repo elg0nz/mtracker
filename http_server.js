@@ -3,20 +3,17 @@ var http = require('http')
 , fs = require('fs')
 , mustache = require('mustache')
 , port = process.env.NODE_ENV == 'prod' ? '/tmp/node.socket' : 8124
-, root_path = process.env.TPL_PATH;
+, root_path = process.env.TPL_PATH
+, index_template = fs.readFileSync(root_path + '/index.html', 'utf8');
 
 var render_home = function(req, res){
-    var template = fs.readFileSync(root_path + '/index.html', 'utf8');
     var view = {
         title: "Raspberry PI"
     };
-    html = mustache.to_html(template, view);
+    html = mustache.to_html(index_template, view);
     req.on('data', function(chunk) {
         console.log(chunk.toString('utf-8'));
     });
-
-    // console.log('a request was received for: ' + path);
-    // console.log(req.headers);
 
     res.writeHead(200, {'Content-Type':'text/html'});
     res.write(html);
