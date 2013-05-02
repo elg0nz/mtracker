@@ -29,4 +29,47 @@ describe('async', function () {
             });
         });
     });
+
+    it('metrics endpoint responds to post', function (done){
+        var options = {
+          hostname: '127.0.0.1',
+          port: 8124,
+          path: '/metric/',
+          method: 'POST'
+        };
+        var req = http.request(options, function(response) {
+          response.setEncoding('utf8');
+          response.on('data', function (chunk) {
+              expect(response.statusCode).toBe(200);
+              done();
+          });
+        });
+        req.on('error', function(e) {
+          console.log('problem with request: ' + e.message);
+        });
+        req.write('wahoo\n');
+        req.end();
+    });
+
+    it('post to metrics returns a json object', function (done){
+        var options = {
+          hostname: '127.0.0.1',
+          port: 8124,
+          path: '/metric/',
+          method: 'POST'
+        };
+        var req = http.request(options, function(response) {
+          response.setEncoding('utf8');
+          response.on('data', function (chunk) {
+              parsed_data = JSON.parse(chunk);
+              expect(parsed_data).toEqual({ a:1, b:2, c:3 });
+              done();
+          });
+        });
+        req.on('error', function(e) {
+          console.log('problem with request: ' + e.message);
+        });
+        req.write('wahoo\n');
+        req.end();
+    });
 });
